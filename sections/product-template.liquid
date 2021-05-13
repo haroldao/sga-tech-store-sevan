@@ -85,7 +85,7 @@
 
               {% for media in product.media %}
                 <li class="product-single__thumbnails-item product-single__thumbnails-item--{{ section.settings.media_size }} {% if enable_thumbnail_slides == true %} product-single__thumbnails-item-slide{% endif %} js"{% if enable_thumbnail_slides == true %} data-slider-slide-index="{{ forloop.index0 }}" data-slider-item{% endif %}>
-                  <a href="{{ media.preview_image | img_url: product_image_zoom_size, scale: product_image_scale }}"
+                  <a href="{{ media.preview_image | img_url: '68x68' }}"
                     class="text-link product-single__thumbnail product-single__thumbnail--{{ section.id }}"
                     data-thumbnail-id="{{ section.id }}-{{ media.id }}"
                     {% if enable_thumbnail_slides == true %} data-slider-item-link{% endif %}
@@ -101,7 +101,7 @@
                         {%- endif -%}
                       {%- endcapture -%}
 
-                      <img class="product-single__thumbnail-image" src="{{ media.preview_image | img_url: '110x110', scale: 2 }}" alt="{{ thumbnailAlt }}">
+                      <img class="product-single__thumbnail-image" src="{{ media.preview_image | img_url: '68x68' }}" alt="{{ thumbnailAlt }}">
                       {%- if media.media_type == 'video' or media.media_type =='external_video' -%}
                         <div class="product-single__thumbnail-badge">
                           {% include 'icon-video-badge-full-color' %}
