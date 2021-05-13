@@ -9,7 +9,7 @@
     Get first variant, or deep linked one
   {% endcomment %}
   {%- assign current_variant = product.selected_or_first_available_variant -%}
-  {%- assign product_image_zoom_size = '1024x1024' -%}
+  {%- assign product_image_zoom_size = '500x500' -%}
   {%- assign product_image_scale = '2' -%}
   {%- assign enable_image_zoom = section.settings.enable_image_zoom -%}
   {%- assign compare_at_price = current_variant.compare_at_price -%}
@@ -272,6 +272,36 @@
         <div class="product-single__description rte">
           {{ product.description }}
         </div>
+        {% assign title1 = product.metafields.product_tabs.tab_1_title %}
+        {% assign content1 = product.metafields.product_tabs.tab_1_content %}
+
+        {% assign title2 = product.metafields.product_tabs.tab_2_title %}
+        {% assign content2 = product.metafields.product_tabs.tab_2_content %}
+
+        {% assign title3 = product.metafields.product_tabs.tab_3_title %}
+        {% assign content3 = product.metafields.product_tabs.tab_3_content %}
+
+        {% if title1 and content1 %}
+        <div class="product-single__tab-1">
+          <h3>{{ product.metafields.product_tabs.tab_1_title }}</h3>
+          <p>{{ product.metafields.product_tabs.tab_1_content }}</p>
+        </div>
+        {% endif %}
+
+        {% if title2 and content2 %}
+        <div class="product-single__tab-2">
+          <h3>{{ product.metafields.product_tabs.tab_2_title }}</h3>
+          <p>{{ product.metafields.product_tabs.tab_2_content }}</p>
+        </div>
+        {% endif %}
+
+        {% if title3 and content3 %}
+        <div class="product-single__tab-2">
+          <h3>{{ product.metafields.product_tabs.tab_3_title }}</h3>
+          <p>{{ product.metafields.product_tabs.tab_3_content }}</p>
+        </div>
+        {% endif %}
+        
 
         {% if section.settings.show_share_buttons %}
           {% include 'social-sharing', share_title: product.title, share_permalink: product.url, share_image: product.featured_media %}
