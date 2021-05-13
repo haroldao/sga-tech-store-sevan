@@ -11,14 +11,18 @@
     }
   {%- endstyle -%}
 {%- endif -%}
+{% assign hero_layout = section.settings.hero_layout %}
+{% assign fixed = 'fixed_width' %}
+{% assign half = 'half_width' %}
 <div data-section-id="{{ section.id }}" data-section-type="hero-section">
-  {%- if section.settings.hero_layout == 'fixed_width' -%}
+  {%- if section.settings.hero_layout == 'fixed_width' or section.settings.hero_layout == 'half_width' -%}
     <div class="page-width">
   {%- endif -%}
-  {%- if section.settings.hero_layout == 'fixed_width' and section.settings.hero_size ==  'adapt' -%}
+  {%- if section.settings.hero_layout == 'fixed_width' or section.settings.hero_layout == 'half_width' and section.settings.hero_size ==  'adapt' -%}
     {%- assign slide_width = 1090 -%}
     {%- assign min_aspect_ratio = section.settings.image.aspect_ratio | default: 2.0 -%}
-    <div class="hero-fixed-width hero--adapt"
+    
+    <div class="{% if hero_layout == fixed %}hero-fixed-width{% endif %}{% if hero_layout == half %}hero-half-width{% endif %} hero--adapt"
          id="Hero-{{ section.id }}"
          data-layout="{{ section.settings.hero_layout }}"
          data-image-loading-animation>
@@ -26,7 +30,7 @@
       {%- if section.settings.image.width < max_width -%}
         {%- assign slide_width = section.settings.image.width -%}
       {%- endif -%}
-      <div class="hero-fixed-width__content">
+      <div class="{% if hero_layout == fixed %}hero-fixed-width{% endif %}{% if hero_layout == half %}hero-half-width{% endif %}__content">
         <div class="page-width text-center">
           {%- if section.settings.title != blank -%}
             <h2 class="h1 mega-title{% if section.settings.text_size == 'large' %} mega-title--large{% endif %}">{{ section.settings.title | escape }}</h2>
@@ -42,7 +46,7 @@
         </div>
       </div>
       {%- if section.settings.image != blank -%}
-        <img class="hero-fixed-width__image lazyload lazypreload"
+        <img class="{% if hero_layout == fixed %}hero-fixed-width{% endif %} {% if hero_layout == half %}hero-half-width{% endif %}__image lazyload lazypreload"
              data-src="{{ img_url }}"
              data-widths="[180, 360, 470, 600, 770, 970, 1060, 1280, 1512, 1728, 2048]"
              data-aspectratio="{{ section.settings.image.aspect_ratio }}"
@@ -60,11 +64,11 @@
         </span>
       {%- endif -%}
       <noscript>
-        <div class="hero-fixed-width__image"{% if section.settings.image %}{% unless section.settings.image.alt == blank %} role="img" aria-label="{{ section.settings.image.alt | escape }}"{% endunless %} style="background-image: url('{{ section.settings.image | img_url: '2048x' }}'); background-position: center {{ section.settings.alignment }};"{% endif %}></div>
+        <div class="{% if hero_layout == fixed %}hero-fixed-width{% endif %}{% if hero_layout == half %}hero-half-width{% endif %}__image"{% if section.settings.image %}{% unless section.settings.image.alt == blank %} role="img" aria-label="{{ section.settings.image.alt | escape }}"{% endunless %} style="background-image: url('{{ section.settings.image | img_url: '2048x' }}'); background-position: center {{ section.settings.alignment }};"{% endif %}></div>
       </noscript>
     </div>
   {%- else -%}
-    <div class="hero hero--{{ section.settings.hero_size }} hero-{{ section.id }}{% if section.settings.title != blank or section.settings.text != blank or section.settings.button_label != blank %} hero__overlay{% endif %} box ratio-container lazyload js"
+    <div class="hero hero--{{ section.settings.hero_size }} hero-{{ section.id }}{% if section.settings.title != blank or section.settings.text != blank or section.settings.button_label != blank %} hero__overlay{% endif %} box ratio-container lazyload js {% if hero_layout == half %}hero-half-width{% endif %}"
          id="Hero-{{ section.id }}"
          data-layout="{{ section.settings.hero_layout }}"
          {%- if section.settings.image -%}
