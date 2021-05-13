@@ -191,22 +191,22 @@
           {% assign content3 = product.metafields.product_tabs.tab_3_content %}
 
           {% if title1 and content1 %}
-          <div class="product-single__tab-1">
-            <h3>{{ product.metafields.product_tabs.tab_1_title }}</h3>
+          <div class="product-single__tab one">
+            <h4>{{ product.metafields.product_tabs.tab_1_title }}</h4>
             <p>{{ product.metafields.product_tabs.tab_1_content }}</p>
           </div>
           {% endif %}
 
           {% if title2 and content2 %}
-          <div class="product-single__tab-2">
-            <h3>{{ product.metafields.product_tabs.tab_2_title }}</h3>
+          <div class="product-single__tab two">
+            <h4>{{ product.metafields.product_tabs.tab_2_title }}</h4>
             <p>{{ product.metafields.product_tabs.tab_2_content }}</p>
           </div>
           {% endif %}
 
           {% if title3 and content3 %}
-          <div class="product-single__tab-2">
-            <h3>{{ product.metafields.product_tabs.tab_3_title }}</h3>
+          <div class="product-single__tab three">
+            <h4>{{ product.metafields.product_tabs.tab_3_title }}</h4>
             <p>{{ product.metafields.product_tabs.tab_3_content }}</p>
           </div>
           {% endif %}
