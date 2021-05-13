@@ -3099,6 +3099,10 @@ hr {
     min-height: 1px;
     padding: 5px 2.5px; } }
 
+/*================ Product Metafields ================*/
+.product-single__metafields .product-single__tab:not(:last-child){
+  margin-bottom: 40px;
+}
 
 /*================ Template | Collections ================*/
 .collection-hero {
