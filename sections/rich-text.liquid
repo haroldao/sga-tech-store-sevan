@@ -1,3 +1,4 @@
+{% if section.settings.enable %}
 <div class="page-width rich-text">
   <div class="grid">
     <div class="grid__item {% unless section.settings.full_width %} medium-up--two-thirds medium-up--push-one-sixth{% endunless %}">
@@ -12,7 +13,7 @@
     </div>
   </div>
 </div>
-
+{% endif %}
 
 
 {% schema %}
@@ -42,6 +43,12 @@
   },
   "class": "index-section",
   "settings": [
+    {
+      "type": "checkbox",
+      "id": "enable",
+      "label": "enable section",
+      "default": true
+    },
     {
       "type": "checkbox",
       "id": "full_width",
